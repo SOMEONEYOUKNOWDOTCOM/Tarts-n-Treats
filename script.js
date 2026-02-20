@@ -258,37 +258,76 @@ function processPayment() {
     contactInfo.address = addressInput.value;
     contactInfo.phone = phoneInput.value;
     
-    // Process order
+    // Generate order summary for WhatsApp message
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const itemsList = cart.map(item => `${item.quantity}x ${item.name} ($${item.price * item.quantity})`).join(', ');
     
-    showNotification(`Order placed successfully! Total: $${total}`);
+    // Create message template
+    const message = `Hello! I would like to place an order. My name is ${contactInfo.name}. I want to buy ${itemsList}. Please deliver to ${contactInfo.address}. My phone number is ${contactInfo.phone}. Total amount: $${total}. Account: ${contactInfo.account}`;
     
-    // Clear cart and close modals
+    // URL encode the message
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Create WhatsApp link (you can replace with your actual phone number)
+    const whatsappNumber = '1234567890'; // Replace with your actual WhatsApp number
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Show order summary with WhatsApp button
+    showOrderSummaryWithWhatsApp(message, whatsappLink, total);
+    
+    // Clear cart
     cart = [];
     updateCartUI();
     closeCheckout();
-    
-    // Show order summary
-    showOrderSummary();
 }
 
-function showOrderSummary() {
+function showOrderSummaryWithWhatsApp(message, whatsappLink, total) {
     const orderModal = document.getElementById('orderModal');
     const orderDetails = document.getElementById('orderDetails');
     
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    
     orderDetails.innerHTML = `
-        <h3>Thank you for your order!</h3>
-        <p><strong>Name:</strong> ${contactInfo.name}</p>
-        <p><strong>Address:</strong> ${contactInfo.address}</p>
-        <p><strong>Phone:</strong> ${contactInfo.phone}</p>
-        <p><strong>Account:</strong> ${contactInfo.account}</p>
-        <p><strong>Total Paid:</strong> $${total}</p>
-        <p class="order-confirmation">Your order has been received and will be delivered soon!</p>
+        <h3>Order Ready to Send!</h3>
+        <div class="message-preview">
+            <h4>Message Preview:</h4>
+            <p class="message-text">${message}</p>
+        </div>
+        <div class="order-info">
+            <p><strong>Total Amount:</strong> $${total}</p>
+            <p><strong>Account:</strong> ${contactInfo.account}</p>
+        </div>
+        <div class="whatsapp-actions">
+            <button class="btn btn-whatsapp" onclick="sendWhatsAppMessage('${whatsappLink}')">
+                <span>📱 Send via WhatsApp</span>
+            </button>
+            <button class="btn btn-secondary" onclick="copyMessage('${encodeURIComponent(message)}')">
+                <span>📋 Copy Message</span>
+            </button>
+        </div>
+        <p class="instruction-text">Click "Send via WhatsApp" to open WhatsApp with your order details pre-filled, or copy the message to send manually.</p>
     `;
     
     orderModal.style.display = 'block';
+}
+
+function sendWhatsAppMessage(whatsappLink) {
+    window.open(whatsappLink, '_blank');
+    showNotification('Opening WhatsApp with your order...');
+}
+
+function copyMessage(encodedMessage) {
+    const message = decodeURIComponent(encodedMessage);
+    navigator.clipboard.writeText(message).then(() => {
+        showNotification('Message copied to clipboard!');
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = message;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showNotification('Message copied to clipboard!');
+    });
 }
 
 function closeOrderSummary() {
