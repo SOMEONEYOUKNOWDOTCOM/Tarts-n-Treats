@@ -329,6 +329,22 @@ body {
     font-size: 1.8rem;
 }
 
+.contact-info input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.contact-info input:focus {
+    outline: none;
+    border-color: #d63384;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
 .contact-info p {
     margin-bottom: 15px;
     font-size: 1.1rem;
