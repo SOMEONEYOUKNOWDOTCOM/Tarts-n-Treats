@@ -268,8 +268,8 @@ function processPayment() {
     // URL encode the message
     const encodedMessage = encodeURIComponent(message);
     
-    // Create WhatsApp link (you can replace with your actual phone number)
-    const whatsappNumber = '09158028665'; // Replace with your actual WhatsApp number
+    // Create WhatsApp link using Nigerian number in international format
+    const whatsappNumber = '2349158028665'; // Nigerian format without + or spaces
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
     // Show order summary with WhatsApp button
