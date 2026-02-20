@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tarts 'n Treats - Artisan bakery offering delicious cakes and pastries made with love">
+    <meta name="keywords" content="bakery, cakes, pastries, desserts, artisan bakery, sweet treats">
+    <meta name="author" content="Tarts 'n Treats">
+    <meta property="og:title" content="Tarts 'n Treats - Artisan Bakery">
+    <meta property="og:description" content="Delicious handcrafted cakes and pastries made with the finest ingredients">
+    <meta property="og:type" content="website">
+    <title>Tarts 'n Treats - Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bubble-background">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Tarts 'n Treats</h1>
+            <p class="subtitle">Artisan Bakery & Confectionery</p>
+        </header>
+
+        <section class="about-section">
+            <div class="about-content">
+                <h2>About Our Business</h2>
+                <p>Welcome to Tarts 'n Treats, where every bite is a celebration! We are a family-owned bakery dedicated to creating delicious, handcrafted cakes and pastries using only the finest ingredients. Our passion for baking started over a decade ago, and today we continue to bring joy to our customers with our signature recipes and innovative creations.</p>
+                <p>From classic birthday cakes to elegant wedding desserts, from flaky croissants to decadent tarts, each item is made with love and attention to detail. We believe that great baking is both an art and a science, and we pour our hearts into every creation that leaves our kitchen.</p>
+                <p>Visit us today and experience the difference that passion and quality make in every bite. Your special occasions deserve special treats, and we're here to make them unforgettable!</p>
+            </div>
+        </section>
+
+        <section class="button-section">
+            <button class="btn btn-cakes" onclick="showCakes()">Cakes</button>
+            <button class="btn btn-pastries" onclick="showPastries()">Pastries</button>
+        </section>
+
+        <section class="products-section" id="productsSection" style="display: none;">
+            <div class="products-container" id="productsContainer"></div>
+        </section>
+
+        <section class="contact-section" id="contactSection" style="display: none;">
+            <div class="contact-card">
+                <h3>Contact Information</h3>
+                <div class="contact-info">
+                    <p><strong>Address:</strong> <span id="addressText"></span></p>
+                    <p><strong>Phone:</strong> <span id="phoneText"></span></p>
+                    <p><strong>Account Number:</strong> <span id="accountText"></span></p>
+                </div>
+                <button class="btn btn-close" onclick="closeContact()">Close</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
