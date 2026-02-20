@@ -1,0 +1,25 @@
+{
+  "name": "tarts-n-treats-bakery",
+  "version": "1.0.0",
+  "description": "Tarts 'n Treats - Artisan Bakery Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "bakery",
+    "cakes",
+    "pastries",
+    "website",
+    "restaurant"
+  ],
+  "author": "Tarts 'n Treats",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
