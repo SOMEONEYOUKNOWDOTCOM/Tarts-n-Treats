@@ -263,7 +263,7 @@ function processPayment() {
     const itemsList = cart.map(item => `${item.quantity}x ${item.name} ($${item.price * item.quantity})`).join(', ');
     
     // Create message template
-    const message = `Hello! I would like to place an order. My name is ${contactInfo.name}. I want to buy ${itemsList}. Please deliver to ${contactInfo.address}. My phone number is ${contactInfo.phone}. Total amount: $${total}. Account: ${contactInfo.account}`;
+    const message = `Hello! I would like to place an order. My name is ${contactInfo.name}. I want to buy ${itemsList}. Please deliver to ${contactInfo.address}. My phone number is ${contactInfo.phone}. Total amount: $${total}.`;
     
     // URL encode the message
     const encodedMessage = encodeURIComponent(message);
