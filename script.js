@@ -65,8 +65,8 @@ const pastries = [
 ];
 
 const contactInfo = {
-    address: "123 Sweet Street, Bakery District, BD 12345",
-    phone: "+1 (555) 123-4567",
+    address: "",
+    phone: "",
     account: "ACC-BAKERY-2024-789"
 };
 
@@ -120,8 +120,9 @@ function showContact() {
     const phoneText = document.getElementById('phoneText');
     const accountText = document.getElementById('accountText');
     
-    addressText.textContent = contactInfo.address;
-    phoneText.textContent = contactInfo.phone;
+    // Create input fields for address and phone
+    addressText.innerHTML = `<input type="text" id="addressInput" placeholder="Enter your address" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">`;
+    phoneText.innerHTML = `<input type="tel" id="phoneInput" placeholder="Enter your phone number" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;">`;
     accountText.textContent = contactInfo.account;
     
     contactSection.style.display = 'block';
@@ -130,6 +131,17 @@ function showContact() {
 function closeContact() {
     const contactSection = document.getElementById('contactSection');
     contactSection.style.display = 'none';
+    
+    // Save the entered values
+    const addressInput = document.getElementById('addressInput');
+    const phoneInput = document.getElementById('phoneInput');
+    
+    if (addressInput) {
+        contactInfo.address = addressInput.value;
+    }
+    if (phoneInput) {
+        contactInfo.phone = phoneInput.value;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
